@@ -1,0 +1,46 @@
+.blog-reader {
+    padding: 1rem 8rem;
+    row-gap: 40px;
+
+    h1 {
+        margin: 0;
+    }
+
+    > div {
+        padding-bottom: 1rem;
+    }
+
+    p {
+        display: grid;
+    }
+
+    img {
+        justify-self: center;
+        max-height: 50vh;
+        max-width: 100%;
+    }
+}
+
+.blog-reader-controls {
+    display: flex;
+    justify-content: end;
+}
+
+.blog-reader-controls > * {
+    margin-inline: 0.5rem;
+}
+
+.tag-row {
+    display: flex;
+    gap: 6px;
+}
+
+.date {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sub-header {
+    display: flex;
+    justify-content: space-between;
+}

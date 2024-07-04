@@ -1,0 +1,14 @@
+.tag-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 9px;
+    border-radius: 20px;
+
+    background-color: #213547;
+    color: white;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
