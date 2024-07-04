@@ -18,6 +18,7 @@ export const metaDataSchema = z.object({
         .transform((val) => dayjs(val))
         .optional(),
     tags: z.array(z.string()),
+    excerpt: z.string().catch(""),
 })
 
 export type MetaData = z.infer<typeof metaDataSchema>

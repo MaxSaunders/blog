@@ -1,4 +1,5 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import logo from "../assets/m-logo.svg"
 import "./Navigation.css"
 
 const pages = [
@@ -10,8 +11,12 @@ const pages = [
 // TODO: maybe add props for the react router
 const Navigation = () => {
     const { pathname } = useLocation()
+    const navigate = useNavigate()
     return (
         <div className="navbar">
+            <div className="logo-box" onClick={() => navigate("/")}>
+                <img alt="max-logo" className="nav-logo" src={logo} />
+            </div>
             {pages.map((page) => (
                 <Link
                     to={page.route}

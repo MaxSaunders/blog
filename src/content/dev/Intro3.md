@@ -1,7 +1,7 @@
 ---
 title: "3 Third Post"
 date: "2024-06-20"
-tags: ["media", "personal"]
+tags: ["work", "development"]
 ---
 
 ![cover_image](https://i.imgur.com/nbq2XcZ.png)

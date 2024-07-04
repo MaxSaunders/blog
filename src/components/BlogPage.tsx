@@ -1,58 +1,31 @@
-import { useCallback, useEffect, useState } from "react"
-import extractMetadataFromMarkdown from "../helpers/extractMetaData"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
-import { MetaData } from "../types/Blog"
+import useGetBlogs from "../helpers/useGetBlogs"
 import BlogReader from "./BlogReader"
 import PostListEntry from "./PostListEntry"
-
-const convertToText = (res: Response) => res.text()
+import "./BlogPage.css"
 
 type BlogPageProps = {
     title: string
     blogs: string[]
 }
 
-const formatFileKey = (fileName: string) => fileName.split("?")[0]
-
 const BlogPage = ({ title, blogs }: BlogPageProps) => {
-    const [blogsData, setBlogsData] = useState<Record<string, MetaData>>({})
+    const { blogsMetaData } = useGetBlogs(blogs)
     const { selectedBlogTitle, setBlogByKey } = useBlogUrlParams()
 
-    const selectedBlogData = blogsData[selectedBlogTitle]
-
-    const getMetaData = useCallback((text: string): MetaData => {
-        const [metaData] = extractMetadataFromMarkdown(text)
-        return metaData
-    }, [])
-
-    const addMetaData = useCallback((result: MetaData, dataKey?: string) => {
-        const key = dataKey ?? result.title
-        setBlogsData((i) => ({
-            ...i,
-            [key]: result,
-        }))
-    }, [])
-
-    useEffect(() => {
-        blogs.forEach((b) =>
-            fetch(b)
-                .then(convertToText)
-                .then(getMetaData)
-                .then((metaData) => addMetaData(metaData, formatFileKey(b)))
-        )
-    }, [blogs, addMetaData, getMetaData])
+    const selectedBlogData = blogsMetaData[selectedBlogTitle]
 
     if (selectedBlogData) {
         return <BlogReader blog={selectedBlogData} blogKey={selectedBlogTitle} />
     }
 
     return (
-        <>
+        <div className="blog-page">
             <div>
-                <h1 style={{ fontSize: "2.5rem" }}>{title}</h1>
+                <h1 className="title">{title}</h1>
             </div>
             <div>
-                {Object.entries(blogsData).map(([blogKey, blog]) => (
+                {Object.entries(blogsMetaData).map(([blogKey, blog]) => (
                     <PostListEntry
                         key={blogKey}
                         metaData={blog}
@@ -60,7 +33,7 @@ const BlogPage = ({ title, blogs }: BlogPageProps) => {
                     />
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

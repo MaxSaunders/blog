@@ -1,7 +1,7 @@
 ---
 title: "2 Intro to Me"
-date: "2024-06-20"
-tags: ["anime"]
+date: "2024-06-18"
+tags: ["lesson", "AWS"]
 ---
 
 ![cover_image](https://i.imgur.com/nbq2XcZ.png)
