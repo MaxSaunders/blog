@@ -24,19 +24,23 @@
             margin: 0;
         }
 
-        .tag-filter {
-            width: 100%;
+        .filter-row {
             display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
 
-            .clear-filter-button {
+            .tag-filter {
                 display: flex;
-                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
 
-                svg {
-                    height: 20px;
-                    width: 20px;
+                .active-tag {
+                    color: white;
+                    background-color: #213547;
+
+                    &:hover {
+                        background-color: rgba(33, 53, 71, 0.3);
+                    }
                 }
             }
 
@@ -47,32 +51,36 @@
                 padding: 2px 9px;
                 border-radius: 20px;
 
-                background-color: #213547;
                 border: 1px solid #213547;
-                color: white;
 
                 font-size: 15px;
                 font-weight: 600;
                 text-transform: uppercase;
 
                 cursor: pointer;
-
-                &:hover {
-                    background-color: rgba(33, 53, 71, 0.6);
-                }
-            }
-
-            .active-tag {
                 background-color: white;
                 color: black;
 
                 &:hover {
-                    background-color: none;
+                    background-color: rgba(33, 53, 71, 0.7);
+                    color: white;
                 }
             }
         }
 
+        .clear-filter-button {
+            width: max-content;
+            display: flex;
+            align-items: center;
+
+            svg {
+                height: 20px;
+                width: 20px;
+            }
+        }
+
         .sort-dropdown {
+            gap: 1rem;
             display: flex;
             width: 100%;
         }

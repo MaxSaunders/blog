@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import ToastContainer from "./components/ToastContainer"
 import Navigation from "./components/Navigation"
-import ErrorPage from "./pages/ErrorPage"
+import NotFoundPage from "./components/NotFoundPage"
+import QuotesBlog from "./pages/QuotesBlog"
+import ErrorPage from "./components/ErrorPage"
 import MediaBlog from "./pages/MediaBlog"
 import DevBlog from "./pages/DevBlog"
 import Home from "./pages/Home"
@@ -22,6 +24,15 @@ const routes = [
         element: <MediaBlog />,
         errorElement: <ErrorPage />,
     },
+    {
+        path: "/quotes",
+        element: <QuotesBlog />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/*",
+        element: <NotFoundPage />,
+    },
 ]
 
 const App = () => (
@@ -31,7 +42,11 @@ const App = () => (
             <div style={{ paddingInline: "2rem", paddingTop: "1rem" }}>
                 <Routes>
                     {routes.map((route) => (
-                        <Route key={route.path} path={route.path} element={route.element} />
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            element={route.element}
+                        />
                     ))}
                 </Routes>
             </div>

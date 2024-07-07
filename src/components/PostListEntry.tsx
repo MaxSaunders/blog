@@ -31,13 +31,23 @@ const icons: stringDict = {
 type PostListEntryProps = {
     metaData: MetaData
     onClick: () => void
+    showExcerpt?: boolean
 }
 
-const PostListEntry = ({ metaData, onClick }: PostListEntryProps) => {
+const PostListEntry = ({
+    metaData,
+    onClick,
+    showExcerpt,
+}: PostListEntryProps) => {
     const getIcon = () => {
-        const matchingTag = metaData.tags.map((i) => i.toLowerCase()).find((i) => i in icons)
+        const matchingTag = metaData.tags
+            .map((i) => i.toLowerCase())
+            .find((i) => i in icons)
 
-        return [icons[matchingTag ?? "OTHER"], matchingTag ?? "Default Blog Icon"]
+        return [
+            icons[matchingTag ?? "default"],
+            matchingTag ?? "Default Blog Icon",
+        ]
     }
 
     const [icon, alt] = getIcon()
@@ -53,11 +63,16 @@ const PostListEntry = ({ metaData, onClick }: PostListEntryProps) => {
                             <Tag key={tag} tag={tag} />
                         ))}
                     </div>
+                    <div>{showExcerpt && metaData.excerpt}</div>
                 </div>
             </div>
             <div>
-                <h3>{!!metaData.author.length && `Author: ${metaData.author}`}</h3>
-                <h3>{metaData.date?.format(CALENDAR_DATE_FORMAT_DASHES) ?? ""} </h3>
+                <h3>
+                    {!!metaData.author.length && `Author: ${metaData.author}`}
+                </h3>
+                <h3>
+                    {metaData.date?.format(CALENDAR_DATE_FORMAT_DASHES) ?? ""}{" "}
+                </h3>
             </div>
         </div>
     )

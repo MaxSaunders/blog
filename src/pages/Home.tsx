@@ -5,6 +5,7 @@ import useGetBlogs from "../helpers/useGetBlogs"
 import devBlogsFiles from "../content/dev"
 import mediaBlogFiles from "../content/media"
 import { MetaData } from "../types/Blog"
+import avatar from "../assets/avatar.svg"
 import Tag from "../components/Tag"
 import "./Home.css"
 
@@ -63,35 +64,49 @@ const Home = () => {
 
     return (
         <div className="home-page">
-            <div>
-                <h1 className="title">Max's Blog</h1>
-            </div>
-            <div className="intro-message">
-                <p>
-                    Hello and welcome! If you're passionate about software
-                    development, intrigued by the intricacies of media, and love
-                    diving deep into scenes that make movies and TV shows
-                    memorable, you're in the right place. This blog is your
-                    destination for insightful articles on software development
-                    lessons learned firsthand, explorations of fascinating
-                    topics that pique my interest, and detailed breakdowns of
-                    those cinematic moments that stay with us long after the
-                    credits roll.
-                </p>
-                <p>
-                    Join me on a journey where we not only unravel the
-                    complexities of coding but also celebrate the magic of
-                    storytelling in our favorite media. Whether you're here to
-                    sharpen your coding skills, discover hidden gems in
-                    entertainment, or simply share in the joy of exploring what
-                    makes software and media so captivating, I'm thrilled to
-                    have you along.
-                </p>
-                <p>
-                    Let's embark on this adventure together and delve into the
-                    world where technology meets creativity, where every line of
-                    code and every cinematic frame has a story to tell.
-                </p>
+            <div className="header-row">
+                <div>
+                    <div>
+                        <h1 className="title">Max's Blog</h1>
+                    </div>
+                    <div className="intro-message">
+                        <p>Hello and welcome!</p>
+                        <p>
+                            If you're passionate about software development,
+                            intrigued by the intricacies of media, and love
+                            diving deep into scenes that make movies and TV
+                            shows memorable, you're in the right place. This
+                            blog is your destination for insightful articles on
+                            software development lessons learned firsthand,
+                            explorations of fascinating topics that pique my
+                            interest, and detailed breakdowns of those cinematic
+                            moments that stay with us long after the credits
+                            roll.
+                        </p>
+                        <p>
+                            Join me on a journey where we not only unravel the
+                            complexities of coding but also celebrate the magic
+                            of storytelling in our favorite media. Whether
+                            you're here to sharpen your coding skills, discover
+                            hidden gems in entertainment, or simply share in the
+                            joy of exploring what makes software and media so
+                            captivating, I'm thrilled to have you along.
+                        </p>
+                        <p>
+                            Let's embark on this adventure together and delve
+                            into the world where technology meets creativity,
+                            where every line of code and every cinematic frame
+                            has a story to tell.
+                        </p>
+                    </div>
+                </div>
+                <div className="avatar-container">
+                    <img
+                        alt="avatar-logo"
+                        className="avatar-logo"
+                        src={avatar}
+                    />
+                </div>
             </div>
             <div>
                 <h2>Latest Blogs</h2>

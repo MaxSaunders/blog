@@ -6,6 +6,7 @@ const pages = [
     { label: "Home", route: "/" },
     { label: "Dev Blog", route: "/dev" },
     { label: "Media Blog", route: "/media" },
+    { label: "Quotes", route: "/quotes" },
 ]
 
 // TODO: maybe add props for the react router
@@ -21,7 +22,9 @@ const Navigation = () => {
                 <Link
                     to={page.route}
                     key={page.label}
-                    className={`nav-link ${pathname === page.route && "nav-link-active"}`}
+                    className={`nav-link ${
+                        pathname === page.route && "nav-link-active"
+                    }`}
                 >
                     {page.label}
                 </Link>

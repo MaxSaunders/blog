@@ -14,9 +14,10 @@ type SortKey = Exclude<BlogKey, "content" | "tags" | "excerpt">
 type BlogPageProps = {
     title: string
     blogs: string[]
+    showExcerpts?: boolean
 }
 
-const BlogPage = ({ title, blogs }: BlogPageProps) => {
+const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
     const { blogsMetaData } = useGetBlogs(blogs)
     const { selectedBlogTitle, setBlogByKey } = useBlogUrlParams()
 
@@ -45,28 +46,28 @@ const BlogPage = ({ title, blogs }: BlogPageProps) => {
                 <h1 className="title">{title}</h1>
             </div>
             <div className="blog-page-controls">
-                <div>
-                    <h3 className="tag-filter-header">
-                        Select Blog Tags Filter
-                    </h3>
-                </div>
-                <div className="tag-filter">
-                    {Array.from(tagOptions)
-                        .sort((a, b) => a.localeCompare(b))
-                        .map((tagOption) => (
-                            <span key={tagOption}>
-                                <span
-                                    onClick={() => toggleTagsFilter(tagOption)}
-                                    key={tagOption}
-                                    className={`selectable-tag ${
-                                        tagFilter.includes(tagOption) &&
-                                        "active-tag"
-                                    }`}
-                                >
-                                    {tagOption}
+                <div className="filter-row">
+                    <div className="tag-filter">
+                        <h3 className="tag-filter-header">Filter by Tags</h3>
+                        {Array.from(tagOptions)
+                            .sort((a, b) => a.localeCompare(b))
+                            .map((tagOption) => (
+                                <span key={tagOption}>
+                                    <span
+                                        onClick={() =>
+                                            toggleTagsFilter(tagOption)
+                                        }
+                                        key={tagOption}
+                                        className={`selectable-tag ${
+                                            tagFilter.includes(tagOption) &&
+                                            "active-tag"
+                                        }`}
+                                    >
+                                        {tagOption}
+                                    </span>
                                 </span>
-                            </span>
-                        ))}
+                            ))}
+                    </div>
                     {tagFilter.length > 0 && (
                         <span
                             onClick={clearTagsFilter}
@@ -78,6 +79,7 @@ const BlogPage = ({ title, blogs }: BlogPageProps) => {
                     )}
                 </div>
                 <div className="sort-dropdown">
+                    <h3>Sort</h3>
                     <select
                         className="select-field"
                         onChange={(e) => setSort(e.target.value as SortKey)}
@@ -93,9 +95,9 @@ const BlogPage = ({ title, blogs }: BlogPageProps) => {
                         className="button input-button"
                     >
                         {sortDirection === "desc" ? (
-                            <FaArrowDown />
+                            <FaArrowDown size={18} />
                         ) : (
-                            <FaArrowUp />
+                            <FaArrowUp size={18} />
                         )}
                     </button>
                 </div>
@@ -106,6 +108,7 @@ const BlogPage = ({ title, blogs }: BlogPageProps) => {
                         key={blogKey}
                         metaData={blog}
                         onClick={() => setBlogByKey(blogKey)}
+                        showExcerpt={showExcerpts}
                     />
                 ))}
             </div>
