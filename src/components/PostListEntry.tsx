@@ -3,17 +3,29 @@ import { MetaData } from "../types/Blog"
 import devIcon from "../assets/dev-icon.jpg"
 import blogIcon from "../assets/blog-icon.png"
 import mediaIcon from "../assets/media-icon.png"
-import "./PostListEntry.css"
+import awsIcon from "../assets/aws-icon.png"
+import avatar from "../assets/avatar.svg"
+import animeIcon from "../assets/crunchyroll.png"
 import Tag from "./Tag"
+import "./PostListEntry.css"
 
 type stringDict = {
     [key: string]: string
 }
 
 const icons: stringDict = {
+    default: blogIcon,
     dev: devIcon,
     media: mediaIcon,
-    other: blogIcon,
+    anime: animeIcon,
+    personal: avatar,
+    aws: awsIcon,
+    lesson: blogIcon,
+    development: awsIcon,
+    /*
+     TODO:
+     add anime, personal, aws, react, development, software, work
+    */
 }
 
 type PostListEntryProps = {
@@ -23,9 +35,9 @@ type PostListEntryProps = {
 
 const PostListEntry = ({ metaData, onClick }: PostListEntryProps) => {
     const getIcon = () => {
-        const matchingTag = metaData.tags.find((i) => i.toLowerCase() in icons)
+        const matchingTag = metaData.tags.map((i) => i.toLowerCase()).find((i) => i in icons)
 
-        return [icons[matchingTag ?? "other"], matchingTag ?? "Default Blog Icon"]
+        return [icons[matchingTag ?? "OTHER"], matchingTag ?? "Default Blog Icon"]
     }
 
     const [icon, alt] = getIcon()

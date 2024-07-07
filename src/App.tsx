@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import DevBlog from "./pages/DevBlog"
-import MediaBlog from "./pages/MediaBlog"
-import ErrorPage from "./pages/ErrorPage"
+import ToastContainer from "./components/ToastContainer"
 import Navigation from "./components/Navigation"
+import ErrorPage from "./pages/ErrorPage"
+import MediaBlog from "./pages/MediaBlog"
+import DevBlog from "./pages/DevBlog"
+import Home from "./pages/Home"
 
 const routes = [
     {
@@ -34,6 +35,7 @@ const App = () => (
                     ))}
                 </Routes>
             </div>
+            <ToastContainer />
         </div>
     </BrowserRouter>
 )

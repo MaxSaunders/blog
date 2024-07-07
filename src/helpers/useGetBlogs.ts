@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { Dispatch, useCallback, useEffect, useState } from "react"
 import { MetaData } from "../types/Blog"
 import extractMetadataFromMarkdown from "./extractMetaData"
 import extractContentFromMarkdown from "./extractContent"
@@ -7,7 +7,14 @@ const convertToText = (res: Response) => res.text()
 
 const formatFileKey = (fileName: string) => fileName.split("?")[0]
 
-const useGetBlogs = (blogFiles: string[]) => {
+type useGetBlogsReturn = {
+    blogsMetaData: Record<string, MetaData>
+    blogContent: Record<string, string>
+    setBlogsMetaData: Dispatch<Record<string, MetaData>>
+    setBlogContent: Dispatch<Record<string, string>>
+}
+
+const useGetBlogs = (blogFiles: string[]): useGetBlogsReturn => {
     const [blogsMetaData, setBlogsMetaData] = useState<Record<string, MetaData>>({})
     const [blogContent, setBlogContent] = useState<Record<string, string>>({})
 

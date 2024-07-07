@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { MdIosShare } from "react-icons/md"
 import { IoMdClose } from "react-icons/io"
 import Markdown from "react-markdown"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
@@ -7,8 +6,9 @@ import { MetaData } from "../types/Blog"
 import extractContentFromMarkdown from "../helpers/extractContent"
 import extractMetadataFromMarkdown from "../helpers/extractMetaData"
 import { CALENDAR_DATE_FORMAT } from "../helpers/constants"
-import "./BlogReader.css"
+import ShareButton from "./ShareButton"
 import Tag from "./Tag"
+import "./BlogReader.css"
 
 const getContentAndMetaData = (markDown: string): [string, MetaData] => [
     extractContentFromMarkdown(markDown),
@@ -38,9 +38,7 @@ const BlogReader = ({ blog, blogKey }: BlogReaderProps) => {
     return (
         <div className="blog-reader">
             <div className="blog-reader-controls">
-                <button className="icon-button" title="Share This Blog">
-                    <MdIosShare size={24} />
-                </button>
+                <ShareButton />
                 <button className="icon-button" title="Close Blog" onClick={clearBlog}>
                     <IoMdClose size={24} />
                 </button>
