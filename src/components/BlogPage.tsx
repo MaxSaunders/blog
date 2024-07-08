@@ -35,9 +35,7 @@ const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
     } = useSortBlogs(blogsMetaData)
 
     if (selectedBlogData) {
-        return (
-            <BlogReader blog={selectedBlogData} blogKey={selectedBlogTitle} />
-        )
+        return <BlogReader blog={selectedBlogData} />
     }
 
     return (

@@ -19,6 +19,7 @@ export const metaDataSchema = z.object({
         .optional(),
     tags: z.array(z.string()),
     excerpt: z.string().catch(""),
+    url: z.string().optional(),
 })
 
 export type MetaData = z.infer<typeof metaDataSchema>

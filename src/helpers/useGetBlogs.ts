@@ -5,7 +5,12 @@ import extractContentFromMarkdown from "./extractContent"
 
 const convertToText = (res: Response) => res.text()
 
-const formatFileKey = (fileName: string) => fileName.split("?")[0]
+const formatUrl = (fileName: string) => fileName.split("?")[0]
+
+const formatFileKey = (fileName: string) => {
+    const filePath = fileName.split("?")[0].split("/")
+    return filePath[filePath.length - 1]
+}
 
 type useGetBlogsReturn = {
     blogsMetaData: Record<string, MetaData>
@@ -15,22 +20,30 @@ type useGetBlogsReturn = {
 }
 
 const useGetBlogs = (blogFiles: string[]): useGetBlogsReturn => {
-    const [blogsMetaData, setBlogsMetaData] = useState<Record<string, MetaData>>({})
+    const [blogsMetaData, setBlogsMetaData] = useState<
+        Record<string, MetaData>
+    >({})
     const [blogContent, setBlogContent] = useState<Record<string, string>>({})
 
-    const getMetaDataAndContent = useCallback((text: string): [MetaData, string] => {
-        const [metaData] = extractMetadataFromMarkdown(text)
-        const content = extractContentFromMarkdown(text)
-        return [metaData, content]
-    }, [])
+    const getMetaDataAndContent = useCallback(
+        (text: string): [MetaData, string] => {
+            const [metaData] = extractMetadataFromMarkdown(text)
+            const content = extractContentFromMarkdown(text)
+            return [metaData, content]
+        },
+        []
+    )
 
-    const addMetaData = useCallback((result: MetaData, dataKey?: string) => {
-        const key = dataKey ?? result.title
-        setBlogsMetaData((i) => ({
-            ...i,
-            [key]: result,
-        }))
-    }, [])
+    const addMetaData = useCallback(
+        (result: MetaData, dataKey: string, url: string) => {
+            const key = dataKey
+            setBlogsMetaData((i) => ({
+                ...i,
+                [key]: { ...result, url },
+            }))
+        },
+        []
+    )
 
     const addContent = useCallback((result: string, dataKey: string) => {
         setBlogContent((i) => ({
@@ -45,7 +58,7 @@ const useGetBlogs = (blogFiles: string[]): useGetBlogsReturn => {
                 .then(convertToText)
                 .then(getMetaDataAndContent)
                 .then(([metaData, content]) => {
-                    addMetaData(metaData, formatFileKey(b))
+                    addMetaData(metaData, formatFileKey(b), formatUrl(b))
                     addContent(content, formatFileKey(b))
                 })
         )

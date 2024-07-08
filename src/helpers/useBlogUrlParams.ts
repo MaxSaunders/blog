@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom"
 import { MetaData } from "../types/Blog"
 import { useCallback } from "react"
 
-const BLOG_TITLE_PARAM = "title"
+const BLOG_TITLE_PARAM = "blog"
 
 const formatToUrl = (str: string) => str.replaceAll("/", "_")
 const formatFromUrl = (str: string) => str.replaceAll("_", "/")
@@ -10,7 +10,9 @@ const formatFromUrl = (str: string) => str.replaceAll("_", "/")
 const useBlogUrlParams = () => {
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const selectedBlogTitle = formatFromUrl(searchParams.get(BLOG_TITLE_PARAM) ?? "")
+    const selectedBlogTitle = formatFromUrl(
+        searchParams.get(BLOG_TITLE_PARAM) ?? ""
+    )
 
     const setBlog = useCallback(
         (blog: MetaData) => {

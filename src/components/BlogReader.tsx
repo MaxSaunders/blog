@@ -18,10 +18,14 @@ const getContentAndMetaData = (markDown: string): [string, MetaData] => [
 
 type BlogReaderProps = {
     blog: MetaData
-    blogKey: string
 }
 
-const BlogReader = ({ blog, blogKey }: BlogReaderProps) => {
+const BlogReader = ({ blog }: BlogReaderProps) => {
+    const blogKey = blog.url
+    if (!blogKey) {
+        throw new Error("Blog not found")
+    }
+
     const [blogContent, setBlogContent] = useState<string>("")
     const [metaData, setMetaData] = useState<MetaData>()
     const { clearBlog } = useBlogUrlParams()
