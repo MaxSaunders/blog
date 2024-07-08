@@ -6,6 +6,7 @@ import { MetaData } from "../types/Blog"
 import extractContentFromMarkdown from "../helpers/extractContent"
 import extractMetadataFromMarkdown from "../helpers/extractMetaData"
 import { CALENDAR_DATE_FORMAT } from "../helpers/constants"
+import CustomComponents from "./CustomMarkdown"
 import ShareButton from "./ShareButton"
 import Tag from "./Tag"
 import "./BlogReader.css"
@@ -39,7 +40,11 @@ const BlogReader = ({ blog, blogKey }: BlogReaderProps) => {
         <div className="blog-reader">
             <div className="blog-reader-controls">
                 <ShareButton />
-                <button className="icon-button" title="Close Blog" onClick={clearBlog}>
+                <button
+                    className="icon-button"
+                    title="Close Blog"
+                    onClick={clearBlog}
+                >
                     <IoMdClose size={24} />
                 </button>
             </div>
@@ -50,12 +55,18 @@ const BlogReader = ({ blog, blogKey }: BlogReaderProps) => {
             <div className="sub-header">
                 <div className="tag-row">
                     {metaData?.tags.map((tag) => (
-                        <Tag key={tag} tag={tag} style={{ fontSize: 16, padding: "5px 10px" }} />
+                        <Tag
+                            key={tag}
+                            tag={tag}
+                            style={{ fontSize: 16, padding: "5px 10px" }}
+                        />
                     ))}
                 </div>
-                <span className="date">{metaData?.date?.format(CALENDAR_DATE_FORMAT)}</span>
+                <span className="date">
+                    {metaData?.date?.format(CALENDAR_DATE_FORMAT)}
+                </span>
             </div>
-            <Markdown>{blogContent}</Markdown>
+            <Markdown components={CustomComponents}>{blogContent}</Markdown>
         </div>
     )
 }
