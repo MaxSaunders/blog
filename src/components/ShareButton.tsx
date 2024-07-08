@@ -1,10 +1,10 @@
 import { useCallback, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import { MdIosShare } from "react-icons/md"
+import { FaLink, FaRegCopy } from "react-icons/fa6"
 import useClipboard from "../helpers/useClipboard"
 import Modal from "./Modal"
 import "./ShareButton.css"
-import { FaLink, FaRegCopy } from "react-icons/fa6"
 
 type ShareModalProps = {
     close: () => void
@@ -30,7 +30,11 @@ const ShareModal = ({ close }: ShareModalProps) => {
                 <div className="copy-message">Share using this link</div>
                 <div className="copy-link-row">
                     <FaLink className="input-icon" />
-                    <input className="text-field copy-link input-w-icon" readOnly value={url} />
+                    <input
+                        className="text-field copy-link input-w-icon"
+                        readOnly
+                        value={url}
+                    />
                     <button className="button input-button" onClick={copyUrl}>
                         <span className="input-button-content">Copy</span>
                         <FaRegCopy className="input-button-content" />

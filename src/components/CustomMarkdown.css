@@ -1,0 +1,37 @@
+.cm-shareable {
+    cursor: pointer;
+
+    .share-icon {
+        transition: scale 0.5s;
+        transition: opacity 0;
+        opacity: 0;
+    }
+
+    &:hover {
+        .share-icon {
+            opacity: 1;
+            scale: 1.1;
+        }
+    }
+}
+
+.cm-scroll-margin {
+    scroll-margin-top: 4.5rem;
+}
+
+.cm-flex {
+    display: flex;
+}
+
+.cm-flex-center {
+    display: flex;
+    align-items: center;
+}
+
+.cm-gap-1 {
+    gap: 0.25rem;
+}
+
+.cm-gap-2 {
+    gap: 0.5rem;
+}

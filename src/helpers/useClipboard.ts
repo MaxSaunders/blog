@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react"
+import { useCallback } from "react"
 import { toast } from "react-toastify"
 import { strings } from "./constants"
 
@@ -10,11 +10,8 @@ const useClipboard = () => {
         }
     }, [])
 
-    const clipboardValue = useMemo(() => navigator.clipboard.read(), [])
-
     return {
         copyToClipboard,
-        clipboardValue,
     }
 }
 
