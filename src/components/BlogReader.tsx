@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom"
 import { IoMdClose } from "react-icons/io"
 import Markdown from "react-markdown"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
@@ -6,6 +7,7 @@ import { MetaData } from "../types/Blog"
 import extractContentFromMarkdown from "../helpers/extractContent"
 import extractMetadataFromMarkdown from "../helpers/extractMetaData"
 import { CALENDAR_DATE_FORMAT } from "../helpers/constants"
+import { scrollToTop } from "../helpers/utils"
 import CustomComponents from "./CustomMarkdown"
 import ShareButton from "./ShareButton"
 import Tag from "./Tag"
@@ -29,6 +31,13 @@ const BlogReader = ({ blog }: BlogReaderProps) => {
     const [blogContent, setBlogContent] = useState<string>("")
     const [metaData, setMetaData] = useState<MetaData>()
     const { clearBlog } = useBlogUrlParams()
+    const { hash: anchorId } = useLocation()
+
+    useEffect(() => {
+        setTimeout(() => {
+            scrollToTop(anchorId.slice(1))
+        }, 100)
+    }, [anchorId])
 
     useEffect(() => {
         fetch(blogKey)

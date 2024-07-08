@@ -2,15 +2,15 @@
     cursor: pointer;
 
     .share-icon {
-        transition: scale 0.5s;
+        transition: scale 0.3s;
         transition: opacity 0;
-        opacity: 0;
+        opacity: 0.9;
     }
 
     &:hover {
         .share-icon {
             opacity: 1;
-            scale: 1.1;
+            scale: 1.2;
         }
     }
 }

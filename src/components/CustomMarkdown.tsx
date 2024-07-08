@@ -1,44 +1,11 @@
-import { useCallback } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
 import { HiOutlineLink } from "react-icons/hi"
 import { ExtraProps } from "react-markdown"
-import useClipboard from "../helpers/useClipboard"
+import { useCopyLinkAndScroll } from "../helpers/utils"
 import "./CustomMarkdown.css"
 
 type CustomComponentProps = React.ClassAttributes<HTMLHeadingElement> &
     React.HTMLAttributes<HTMLHeadingElement> &
     ExtraProps
-
-const scrollToTop = (elementId?: string) =>
-    elementId &&
-    document.getElementById(elementId)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-    })
-
-const useCopyLinkAndScroll = (elementId?: string) => {
-    const navigate = useNavigate()
-    const { pathname, search } = useLocation()
-
-    const { copyToClipboard } = useClipboard()
-    const url = window.location.href
-
-    const copyUrl = useCallback(() => {
-        copyToClipboard(url)
-    }, [copyToClipboard, url])
-
-    const copyLinkAndScroll = () => {
-        scrollToTop(elementId)
-        navigate({
-            pathname: pathname,
-            search: search,
-            hash: elementId,
-        })
-        copyUrl()
-    }
-
-    return copyLinkAndScroll
-}
 
 type CustomProps = {
     props: CustomComponentProps
