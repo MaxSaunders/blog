@@ -1,7 +1,10 @@
 import { useCallback, useState } from "react"
 import { IoMdClose } from "react-icons/io"
 import { MdIosShare } from "react-icons/md"
-import { FaLink, FaRegCopy } from "react-icons/fa6"
+import { IoLogoDiscord, IoLogoFacebook } from "react-icons/io5"
+import { RiMailSendFill } from "react-icons/ri"
+import { BsReddit } from "react-icons/bs"
+import { FaLink, FaRegCopy, FaXTwitter } from "react-icons/fa6"
 import useClipboard from "../helpers/useClipboard"
 import Modal from "./Modal"
 import "./ShareButton.css"
@@ -12,7 +15,7 @@ type ShareModalProps = {
 
 const ShareModal = ({ close }: ShareModalProps) => {
     const { copyToClipboard } = useClipboard()
-    const url = window.location.href
+    const url = window.location.href.split("#")[0]
 
     const copyUrl = useCallback(() => {
         copyToClipboard(url)
@@ -23,11 +26,28 @@ const ShareModal = ({ close }: ShareModalProps) => {
             <div className="share-button-modal">
                 <div className="header">
                     <h2>Share Now</h2>
-                    <button className="icon-button" onClick={close}>
+                    <button className="icon-button-inverse" onClick={close}>
                         <IoMdClose size={24} />
                     </button>
                 </div>
-                <div className="copy-message">Share using this link</div>
+                <div className="share-icon-row">
+                    <span className="icon-wrapper icon-discord">
+                        <IoLogoDiscord />
+                    </span>
+                    <span className="icon-wrapper icon-facebook">
+                        <IoLogoFacebook />
+                    </span>
+                    <span className="icon-wrapper icon-email">
+                        <RiMailSendFill />
+                    </span>
+                    <span className="icon-wrapper icon-twitter">
+                        <FaXTwitter />
+                    </span>
+                    <span className="icon-wrapper icon-reddit">
+                        <BsReddit />
+                    </span>
+                </div>
+                <div className="copy-message">Or share using this link</div>
                 <div className="copy-link-row">
                     <FaLink className="input-icon" />
                     <input

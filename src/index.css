@@ -83,9 +83,8 @@ h1 {
     padding-left: 2.2rem;
 }
 
-.icon-button {
-    background-color: #213547;
-    color: white;
+.icon-button,
+.icon-button-inverse {
     border-radius: 4px;
     border: none;
     text-align: center;
@@ -97,6 +96,16 @@ h1 {
         background-color: lightgray;
         color: #213547;
     }
+}
+
+.icon-button {
+    background-color: #213547;
+    color: white;
+}
+
+.icon-button-inverse {
+    color: #213547;
+    background-color: white;
 }
 
 @media (prefers-color-scheme: light) {
