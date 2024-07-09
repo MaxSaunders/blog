@@ -1,3 +1,4 @@
+import { CSSProperties } from "react"
 import { CALENDAR_DATE_FORMAT_DASHES } from "../helpers/constants"
 import { MetaData } from "../types/Blog"
 import devIcon from "../assets/dev-icon.jpg"
@@ -6,26 +7,37 @@ import mediaIcon from "../assets/media-icon.png"
 import awsIcon from "../assets/aws-icon.png"
 import avatar from "../assets/avatar.svg"
 import animeIcon from "../assets/crunchyroll.png"
+import movieIcon from "../assets/popcorn.jpg"
 import Tag from "./Tag"
 import "./PostListEntry.css"
 
-type stringDict = {
-    [key: string]: string
+type iconInfo = {
+    url: string
+    style?: CSSProperties
 }
 
-const icons: stringDict = {
-    default: blogIcon,
-    dev: devIcon,
-    media: mediaIcon,
-    anime: animeIcon,
-    personal: avatar,
-    aws: awsIcon,
-    lesson: blogIcon,
-    development: awsIcon,
-    /*
-     TODO:
-     add anime, personal, aws, react, development, software, work
-    */
+const defaultIcon: iconInfo = {
+    url: blogIcon,
+    style: {
+        padding: ".5rem",
+    },
+}
+
+const icons: Record<string, iconInfo> = {
+    default: defaultIcon,
+    lesson: defaultIcon,
+    dev: { url: devIcon },
+    media: { url: mediaIcon },
+    movie: { url: movieIcon },
+    anime: { url: animeIcon },
+    personal: {
+        url: avatar,
+        style: {
+            background: "#2196f3",
+        },
+    },
+    aws: { url: awsIcon },
+    development: { url: awsIcon },
 }
 
 type PostListEntryProps = {
@@ -39,23 +51,26 @@ const PostListEntry = ({
     onClick,
     showExcerpt,
 }: PostListEntryProps) => {
-    const getIcon = () => {
+    const getIcon = (): [string, string, CSSProperties] => {
         const matchingTag = metaData.tags
             .map((i) => i.toLowerCase())
             .find((i) => i in icons)
 
-        return [
-            icons[matchingTag ?? "default"],
-            matchingTag ?? "Default Blog Icon",
-        ]
+        const { url, style } = icons[matchingTag ?? "default"]
+        return [url, matchingTag ?? "Default Blog Icon", style ?? {}]
     }
 
-    const [icon, alt] = getIcon()
+    const [icon, alt, iconStyle] = getIcon()
 
     return (
         <div key={metaData.title} onClick={onClick} className="post-list-entry">
             <div className="post-info-col">
-                <img alt={alt} className="blog-icon" src={icon} />
+                <img
+                    alt={alt}
+                    className="blog-icon"
+                    src={icon}
+                    style={iconStyle}
+                />
                 <div className="post-info">
                     <h3>{metaData.title}</h3>
                     <div className="list-tags">

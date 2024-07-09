@@ -11,8 +11,10 @@ const URL_TAG_FILTER_KEY = "tags"
 const sortDirectionKeySchema = z.enum(["asc", "desc"])
 type SortDirection = z.infer<typeof sortDirectionKeySchema>
 
-const sortKeySchema = metaDataSchema.omit({ tags: true, excerpt: true }).keyof()
-type SortKey = z.infer<typeof sortKeySchema>
+const sortKeySchema = metaDataSchema
+    .omit({ tags: true, excerpt: true, url: true })
+    .keyof()
+export type SortKey = z.infer<typeof sortKeySchema>
 
 function isSortDir(string: unknown): string is SortDirection {
     return typeof string === "string" && string in sortDirectionKeySchema.Values

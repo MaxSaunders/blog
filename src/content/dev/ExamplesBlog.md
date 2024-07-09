@@ -1,7 +1,7 @@
 ---
-title: "2 Intro to Me"
+title: "Example Blog"
 date: "2024-06-18"
-tags: ["lesson", "AWS", "jobs", "career", "hope"]
+tags: ["lesson", "AWS", "jobs", "career"]
 ---
 
 ![cover_image](https://i.imgur.com/nbq2XcZ.png)

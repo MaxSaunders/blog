@@ -2,14 +2,10 @@ import { IoMdClose } from "react-icons/io"
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
 import useGetBlogs from "../helpers/useGetBlogs"
-import { MetaData } from "../types/Blog"
-import useSortBlogs from "../helpers/useSortBlogs"
+import useSortBlogs, { SortKey } from "../helpers/useSortBlogs"
 import PostListEntry from "./PostListEntry"
 import BlogReader from "./BlogReader"
 import "./BlogPage.css"
-
-type BlogKey = keyof MetaData
-type SortKey = Exclude<BlogKey, "content" | "tags" | "excerpt">
 
 type BlogPageProps = {
     title: string
@@ -23,6 +19,7 @@ const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
 
     const selectedBlogData = blogsMetaData[selectedBlogTitle]
     const {
+        sort,
         sortedBlogs,
         sortDirection,
         sortOptions,
@@ -79,6 +76,7 @@ const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
                 <div className="sort-dropdown">
                     <h3>Sort</h3>
                     <select
+                        value={sort}
                         className="select-field"
                         onChange={(e) => setSort(e.target.value as SortKey)}
                     >

@@ -21,7 +21,6 @@ export const useCopyLinkAndScroll = (elementId?: string) => {
     }, [copyToClipboard, url])
 
     const copyLinkAndScroll = () => {
-        scrollToTop(elementId)
         navigate({
             pathname: pathname,
             search: search,
