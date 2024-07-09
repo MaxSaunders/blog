@@ -20,7 +20,7 @@ const LatestBlogDisplay = ({ blogs, urlBase }: LatestBlogDisplayProps) => (
             <Link
                 key={blog.title}
                 className="blog-display"
-                to={`${urlBase}?title=${file}`}
+                to={`${urlBase}?blog=${file}`}
             >
                 <div className="blog-display-content">
                     <h3 className="display-title">{blog.title}</h3>

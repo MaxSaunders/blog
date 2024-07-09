@@ -78,14 +78,16 @@ const PostListEntry = ({
                             <Tag key={tag} tag={tag} />
                         ))}
                     </div>
-                    <div>{showExcerpt && metaData.excerpt}</div>
+                    <div className="post-excerpt">
+                        {showExcerpt && metaData.excerpt}
+                    </div>
                 </div>
             </div>
             <div>
                 <h3>
                     {!!metaData.author.length && `Author: ${metaData.author}`}
                 </h3>
-                <h3>
+                <h3 className="date-info">
                     {metaData.date?.format(CALENDAR_DATE_FORMAT_DASHES) ?? ""}{" "}
                 </h3>
             </div>

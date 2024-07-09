@@ -4,6 +4,7 @@
     margin-block: 1rem;
     padding-inline: 1rem;
     padding-block: 1rem;
+    overflow: hidden;
 
     justify-content: space-between;
     cursor: pointer;
@@ -15,20 +16,36 @@
     h4 {
         margin: 0;
     }
+
+    .post-info-col {
+        display: flex;
+        overflow: hidden;
+
+        .post-info {
+            overflow: hidden;
+
+            div,
+            h3 {
+                padding-bottom: 0.5rem;
+            }
+
+            .post-excerpt {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+
+    .date-info {
+        min-width: max-content;
+    }
 }
 
 .post-list-entry:hover {
     color: #747bff;
     border-color: #747bff;
     box-shadow: #747bff 0px 3px 8px;
-}
-
-.post-info > * {
-    padding-bottom: 0.5rem;
-}
-
-.post-info-col {
-    display: flex;
 }
 
 .blog-tags-header {
