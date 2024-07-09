@@ -1,5 +1,6 @@
 import { IoMdClose } from "react-icons/io"
 import { FaArrowDown, FaArrowUp } from "react-icons/fa"
+import ReactSelect from "react-select"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
 import useGetBlogs from "../helpers/useGetBlogs"
 import useSortBlogs, { SortKey } from "../helpers/useSortBlogs"
@@ -75,17 +76,15 @@ const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
                 </div>
                 <div className="sort-dropdown">
                     <h3>Sort</h3>
-                    <select
-                        value={sort}
+                    <ReactSelect
+                        value={{ value: sort, label: sort.toUpperCase() }}
+                        onChange={(e) => setSort(e?.value as SortKey)}
                         className="select-field"
-                        onChange={(e) => setSort(e.target.value as SortKey)}
-                    >
-                        {sortOptions.map((sortOption) => (
-                            <option key={sortOption} value={sortOption}>
-                                {sortOption.toUpperCase()}
-                            </option>
-                        ))}
-                    </select>
+                        options={sortOptions.map((i) => ({
+                            value: i,
+                            label: i.toUpperCase(),
+                        }))}
+                    />
                     <button
                         onClick={toggleSortDirection}
                         className="button input-button"
