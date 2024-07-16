@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { IoMdClose } from "react-icons/io"
-import Markdown from "react-markdown"
+import Markdown, { Components } from "react-markdown"
 import useBlogUrlParams from "../helpers/useBlogUrlParams"
 import { MetaData } from "../types/Blog"
 import extractContentFromMarkdown from "../helpers/extractContent"
@@ -18,11 +18,14 @@ const getContentAndMetaData = (markDown: string): [string, MetaData] => [
     extractMetadataFromMarkdown(markDown)[0],
 ]
 
+export type CustomComponents = Partial<Components>
+
 type BlogReaderProps = {
     blog: MetaData
+    customComponents?: CustomComponents
 }
 
-const BlogReader = ({ blog }: BlogReaderProps) => {
+const BlogReader = ({ blog, customComponents }: BlogReaderProps) => {
     const blogKey = blog.url
     if (!blogKey) {
         throw new Error("Blog not found")
@@ -79,7 +82,12 @@ const BlogReader = ({ blog }: BlogReaderProps) => {
                     {metaData?.date?.format(CALENDAR_DATE_FORMAT)}
                 </span>
             </div>
-            <Markdown components={CustomComponents}>{blogContent}</Markdown>
+            <Markdown
+                className="markdown-reader"
+                components={{ ...CustomComponents, ...customComponents }}
+            >
+                {blogContent}
+            </Markdown>
         </div>
     )
 }

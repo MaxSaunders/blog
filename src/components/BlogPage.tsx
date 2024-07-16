@@ -5,16 +5,22 @@ import useBlogUrlParams from "../helpers/useBlogUrlParams"
 import useGetBlogs from "../helpers/useGetBlogs"
 import useSortBlogs, { SortKey } from "../helpers/useSortBlogs"
 import PostListEntry from "./PostListEntry"
-import BlogReader from "./BlogReader"
+import BlogReader, { CustomComponents } from "./BlogReader"
 import "./BlogPage.css"
 
 type BlogPageProps = {
     title: string
     blogs: string[]
     showExcerpts?: boolean
+    customComponents?: CustomComponents
 }
 
-const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
+const BlogPage = ({
+    title,
+    blogs,
+    showExcerpts,
+    customComponents,
+}: BlogPageProps) => {
     const { blogsMetaData } = useGetBlogs(blogs)
     const { selectedBlogTitle, setBlogByKey } = useBlogUrlParams()
 
@@ -33,7 +39,12 @@ const BlogPage = ({ title, blogs, showExcerpts }: BlogPageProps) => {
     } = useSortBlogs(blogsMetaData)
 
     if (selectedBlogData) {
-        return <BlogReader blog={selectedBlogData} />
+        return (
+            <BlogReader
+                blog={selectedBlogData}
+                customComponents={customComponents}
+            />
+        )
     }
 
     return (

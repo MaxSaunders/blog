@@ -5,7 +5,7 @@ tags: ["anime", "tv", "fight"]
 thumbnail: "/thumbnails/react.png"
 ---
 
-![Frieren Banner](src/content/assets/frieren.jpg)
+![Frieren Banner](https://postimg.cc/Xp4FJhys)
 
 ## Background:
 
@@ -21,7 +21,7 @@ As he prepares his first attack, Frieren instructs her apprentice to prepare a d
 
 As Frieren explains this you can tell she is hoping to dissuade the demon from continuing the battle. The demon starts to contemplate this development as you see him cast a smaller version of the defensive spell he just saw for the first time. He begins scratching his chin and analyzing it. He notes how interesting it is that it attunes to the spell and dissipates the magic. He then proclaims that it must use alot of mana, as an enormous grin forms on his face.
 
-![Frieren Battle](src/content/assets/frieren-battle.jpg)
+![Frieren Battle](https://postimg.cc/xXqPf7WW)
 
 Fireren gets back into battle stance as she tells her student to prepare as he discovered the weakness of defensive magic. The demon then, almost as if he is conducting an orchestra, begins a barrage of Zoltrak attacks. The apprentice uses the rest of her strength and skill to defend against the attack as her master lands a single blow of enhanced Zoltrak to kill the demon as his last words were “My spell…”.
 

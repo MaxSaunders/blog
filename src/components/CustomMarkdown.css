@@ -35,3 +35,8 @@
 .cm-gap-2 {
     gap: 0.5rem;
 }
+
+.quote-speaker {
+    display: flex;
+    justify-content: end;
+}

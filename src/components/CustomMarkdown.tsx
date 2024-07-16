@@ -1,17 +1,23 @@
+/* eslint-disable react-refresh/only-export-components */
 import { HiOutlineLink } from "react-icons/hi"
 import { ExtraProps } from "react-markdown"
 import { useCopyLinkAndScroll } from "../helpers/utils"
 import "./CustomMarkdown.css"
 
-type CustomComponentProps = React.ClassAttributes<HTMLHeadingElement> &
-    React.HTMLAttributes<HTMLHeadingElement> &
+type CustomHTML<T> = React.ClassAttributes<T> &
+    React.HTMLAttributes<T> &
     ExtraProps
 
-type CustomProps = {
-    props: CustomComponentProps
+type CustomListProps = CustomHTML<HTMLLIElement>
+type CustomH2Props = CustomHTML<HTMLHeadingElement>
+
+export const QuotesCustomComponents = {
+    li: (props: CustomListProps) => (
+        <div className="quote-speaker">{`- ${props.children}`}</div>
+    ),
 }
 
-const CustomH2 = ({ props }: CustomProps) => {
+const CustomH2 = ({ props }: { props: CustomH2Props }) => {
     const { children, ...rest } = props
     const id = children
         ?.toString()
@@ -35,7 +41,7 @@ const CustomH2 = ({ props }: CustomProps) => {
 }
 
 const CustomComponents = {
-    h2: (props: CustomComponentProps) => <CustomH2 props={props} />,
+    h2: (props: CustomH2Props) => <CustomH2 props={props} />,
 }
 
 export default CustomComponents

@@ -1,8 +1,21 @@
 .quotes-blog {
     .blog-reader {
+        .markdown-reader {
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: rgba(0, 40, 80, 0.1);
+            padding: 0 2rem;
+            margin-top: 2rem;
+        }
+
         p {
-            font-size: 20px;
+            font-size: 35px;
             font-weight: 700;
+        }
+
+        .quote-speaker {
+            font-size: 30px;
+            font-weight: 600;
         }
     }
 
