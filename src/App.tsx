@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { HashRouter as Router, Route, Routes } from "react-router-dom"
 import ToastContainer from "./components/ToastContainer"
 import Navigation from "./components/Navigation"
 import NotFoundPage from "./components/NotFoundPage"
@@ -36,7 +36,7 @@ const routes = [
 ]
 
 const App = () => (
-    <BrowserRouter>
+    <Router>
         <div style={{ height: "100vh", width: "100vw", overflowY: "auto" }}>
             <Navigation />
             <div style={{ paddingInline: "2rem", paddingTop: "1rem" }}>
@@ -52,7 +52,7 @@ const App = () => (
             </div>
             <ToastContainer />
         </div>
-    </BrowserRouter>
+    </Router>
 )
 
 export default App
